@@ -1,0 +1,58 @@
+From: "Bradford D. Boyle" <bradford.d.boyle@gmail.com>
+Date: Wed, 23 Dec 2020 16:56:25 -0800
+Subject: use python2 for instead of python
+
+Authored-by: Bradford D. Boyle <bradfordb@vmware.com>
+---
+ gpMgmt/bin/Makefile | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/gpMgmt/bin/Makefile b/gpMgmt/bin/Makefile
+index 4afc1dc..84542d7 100644
+--- a/gpMgmt/bin/Makefile
++++ b/gpMgmt/bin/Makefile
+@@ -56,7 +56,7 @@ LIB_DIR=$(SRC)/lib
+ PYLIB_DIR=$(SRC)/ext
+ 
+ core: pygresql subprocess32
+-	python gpconfig_modules/parse_guc_metadata.py $(DESTDIR)$(prefix)
++	$(PYTHON) gpconfig_modules/parse_guc_metadata.py $(DESTDIR)$(prefix)
+ 
+ ifneq "$(wildcard $(CURDIR)/pythonSrc/ext/*.tar.gz)" ""
+ install: installdirs installprograms core psutil pygresql pyyaml
+@@ -84,7 +84,7 @@ pygresql:
+ 	if [ `uname -s` = 'OpenBSD' ]; then \
+ 	    cd $(PYLIB_SRC)/$(PYGRESQL_DIR) && DESTDIR="$(DESTDIR)" CC=cc python setup.py build; \
+ 	else \
+-	    cd $(PYLIB_SRC)/$(PYGRESQL_DIR) && DESTDIR="$(DESTDIR)" CC="$(CC)" LDFLAGS='$(LDFLAGS) $(PYGRESQL_LDFLAGS)' python setup.py build; \
++	    cd $(PYLIB_SRC)/$(PYGRESQL_DIR) && DESTDIR="$(DESTDIR)" CC="$(CC)" LDFLAGS='$(LDFLAGS) $(PYGRESQL_LDFLAGS)' $(PYTHON) setup.py build; \
+ 	fi
+ 	mkdir -p $(PYLIB_DIR)/pygresql
+ 	if [ `uname -s` = 'Darwin' ]; then \
+@@ -102,7 +102,7 @@ pygresql:
+ subprocess32:
+ 	@echo "--- subprocess32, Linux only"
+ 	@if [ `uname -s` = 'Linux' ]; then \
+-		  cd $(PYLIB_SRC)/subprocess32 && CC="$(CC)" python setup.py build; \
++		  cd $(PYLIB_SRC)/subprocess32 && CC="$(CC)" $(PYTHON) setup.py build; \
+ 		  cp -f $(PYLIB_SRC)/subprocess32/build/lib.*/* $(PYLIB_DIR)/;  \
+ 		  cp -f $(PYLIB_SRC)/subprocess32/ChangeLog $(PYLIB_DIR)/subprocess32-ChangeLog;  \
+ 	  fi
+@@ -116,7 +116,7 @@ PSUTIL_DIR=psutil-$(PSUTIL_VERSION)
+ psutil:
+ 	@echo "--- psutil"
+ 	cd $(PYLIB_SRC_EXT)/ && tar xzf $(PSUTIL_DIR).tar.gz
+-	cd $(PYLIB_SRC_EXT)/$(PSUTIL_DIR)/ && CC="$(CC)" python setup.py build
++	cd $(PYLIB_SRC_EXT)/$(PSUTIL_DIR)/ && CC="$(CC)" $(PYTHON) setup.py build
+ 	cp -r $(PYLIB_SRC_EXT)/$(PSUTIL_DIR)/build/lib.*/psutil $(PYLIB_DIR)
+ 
+ 
+@@ -129,7 +129,7 @@ PYYAML_DIR=PyYAML-$(PYYAML_VERSION)
+ pyyaml:
+ 	@echo "--- pyyaml"
+ 	cd $(PYLIB_SRC_EXT)/ && tar xzf $(PYYAML_DIR).tar.gz
+-	cd $(PYLIB_SRC_EXT)/$(PYYAML_DIR)/ && env -u CC python setup.py build
++	cd $(PYLIB_SRC_EXT)/$(PYYAML_DIR)/ && env -u CC $(PYTHON) setup.py build
+ 	cp -r $(PYLIB_SRC_EXT)/$(PYYAML_DIR)/build/lib*/* $(PYLIB_DIR)
+ 
+ #

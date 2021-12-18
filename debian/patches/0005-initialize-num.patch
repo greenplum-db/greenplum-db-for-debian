@@ -1,0 +1,20 @@
+From: "Bradford D. Boyle" <bradford.d.boyle@gmail.com>
+Date: Wed, 11 Aug 2021 09:57:08 -0700
+Subject: initialize num
+
+---
+ gpcontrib/gp_sparse_vector/SparseData.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/gpcontrib/gp_sparse_vector/SparseData.h b/gpcontrib/gp_sparse_vector/SparseData.h
+index bd3f68b..52fe524 100644
+--- a/gpcontrib/gp_sparse_vector/SparseData.h
++++ b/gpcontrib/gp_sparse_vector/SparseData.h
+@@ -255,6 +255,7 @@ static inline int64 compword_to_int8(const char *entry)
+ 	int64 num;
+ 	char *numptr8 = (char *)(&num);
+ 
++	num = 0;
+ 	switch(size) {
+ 		case 0: //Null entry, return a run length of 1
+ 			return(1);

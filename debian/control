@@ -1,0 +1,41 @@
+Source: gpdb
+Maintainer: Bradford D. Boyle <bradford.d.boyle@gmail.com>
+Section: misc
+Priority: optional
+Standards-Version: 4.5.1
+Build-Depends:
+ bison,
+ debhelper (>= 9),
+ flex,
+ libapr1-dev,
+ libaprutil1-dev,
+ libbz2-dev,
+ libcurl4-openssl-dev,
+ libevent-dev,
+ libkrb5-dev,
+ libldap2-dev,
+ libpam0g-dev,
+ libperl-dev,
+ libpython2-dev,
+ libreadline-dev,
+ libssl-dev,
+ libxerces-c-dev,
+ libxml2-dev,
+ libyaml-dev,
+ libzstd-dev,
+ python2,
+ zlib1g-dev
+Vcs-Git: git@gitlab.com:bradfordboyle/debian-gpdb.git -b 6
+
+Package: greenplum-db-6
+Architecture: any
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+ less,
+ locales,
+ net-tools,
+ openssh-server,
+ python2
+Description: Greenplum Database
+ TODO

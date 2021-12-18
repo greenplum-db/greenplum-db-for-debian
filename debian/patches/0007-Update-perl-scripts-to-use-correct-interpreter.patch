@@ -1,0 +1,51 @@
+From: "Bradford D. Boyle" <bradford.d.boyle@gmail.com>
+Date: Thu, 2 Sep 2021 07:50:07 -0700
+Subject: Update perl scripts to use correct interpreter
+
+---
+ src/test/regress/atmsort.pl      | 2 +-
+ src/test/regress/explain.pl      | 2 +-
+ src/test/regress/gpdiff.pl       | 2 +-
+ src/test/regress/gpstringsubs.pl | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/test/regress/atmsort.pl b/src/test/regress/atmsort.pl
+index 7f92563..b652251 100755
+--- a/src/test/regress/atmsort.pl
++++ b/src/test/regress/atmsort.pl
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/usr/bin/perl
+ #
+ # Portions Copyright (c) 2007, 2008, 2009 GreenPlum.  All rights reserved.
+ # Portions Copyright (c) 2012-Present Pivotal Software, Inc.
+diff --git a/src/test/regress/explain.pl b/src/test/regress/explain.pl
+index e4f39b0..3753a88 100755
+--- a/src/test/regress/explain.pl
++++ b/src/test/regress/explain.pl
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/usr/bin/perl
+ #
+ # Portions Copyright (c) 2006, 2007, 2008, 2009 Greenplum Inc
+ # Portions Copyright (c) 2012-Present Pivotal Software, Inc.
+diff --git a/src/test/regress/gpdiff.pl b/src/test/regress/gpdiff.pl
+index a2e7b56..00c46eb 100755
+--- a/src/test/regress/gpdiff.pl
++++ b/src/test/regress/gpdiff.pl
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/usr/bin/perl
+ #
+ # Portions Copyright (c) 2007, 2008, 2009 GreenPlum.  All rights reserved.
+ # Portions Copyright (c) 2012-Present Pivotal Software, Inc.
+diff --git a/src/test/regress/gpstringsubs.pl b/src/test/regress/gpstringsubs.pl
+index 662e969..64b9892 100755
+--- a/src/test/regress/gpstringsubs.pl
++++ b/src/test/regress/gpstringsubs.pl
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/usr/bin/perl
+ #
+ # Portions Copyright (c) 2007-2010 GreenPlum.  All rights reserved.
+ # Portions Copyright (c) 2012-Present Pivotal Software, Inc.

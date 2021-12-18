@@ -1,0 +1,5 @@
+gpdb (6.19.0-1) UNRELEASED; urgency=medium
+
+  * Initial release. (Closes: #XXXXXX)
+
+ -- Bradford D. Boyle <bradford.d.boyle@gmail.com>  Fri, 17 Dec 2021 18:27:14 -0800

@@ -1,0 +1,8 @@
+0001-Use-libdir-instead-of-prefix-lib.patch
+0002-Update-lib-paths-to-include-multiarch.patch
+0003-use-python2-for-instead-of-python.patch
+0004-remove-explicit-C-standard.patch
+0005-initialize-num.patch
+0006-Update-scripts-to-use-python2-in-shebang.patch
+0007-Update-perl-scripts-to-use-correct-interpreter.patch
+0008-Ensure-that-distributed-files-are-plain-ASCII.patch

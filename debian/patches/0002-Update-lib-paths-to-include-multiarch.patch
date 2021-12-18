@@ -1,0 +1,31 @@
+From: "Bradford D. Boyle" <bboyle@pivotal.io>
+Date: Sun, 12 Apr 2020 22:13:52 -0700
+Subject: Update lib paths to include multiarch
+
+Authored-by: Bradford D. Boyle <bboyle@pivotal.io>
+---
+ gpMgmt/bin/generate-greenplum-path.sh | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gpMgmt/bin/generate-greenplum-path.sh b/gpMgmt/bin/generate-greenplum-path.sh
+index 3b1a75c..c4c77dd 100755
+--- a/gpMgmt/bin/generate-greenplum-path.sh
++++ b/gpMgmt/bin/generate-greenplum-path.sh
+@@ -17,14 +17,14 @@ if [ "${SET_PYTHONHOME}" = "yes" ]; then
+ 	export PYTHONHOME
+ 
+ 	PATH="${PYTHONHOME}/bin:${PATH}"
+-	LD_LIBRARY_PATH="${PYTHONHOME}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
++	LD_LIBRARY_PATH="${PYTHONHOME}/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH)${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+ 	EOF
+ fi
+ 
+ cat <<"EOF"
+-PYTHONPATH="${GPHOME}/lib/python"
++PYTHONPATH="${GPHOME}/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH)/python"
+ PATH="${GPHOME}/bin:${PATH}"
+-LD_LIBRARY_PATH="${GPHOME}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
++LD_LIBRARY_PATH="${GPHOME}/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH)${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+ 
+ if [ -e "${GPHOME}/etc/openssl.cnf" ]; then
+ 	OPENSSL_CONF="${GPHOME}/etc/openssl.cnf"
