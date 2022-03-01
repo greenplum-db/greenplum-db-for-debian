@@ -1,0 +1,24 @@
+# Greenplum Database expects everything to be installed under a single
+# directory to be referenced as GPHOME
+dir-in-usr-local
+file-in-usr-local
+file-in-unusual-dir
+package-contains-documentation-outside-usr-share-doc
+
+# Greenplum Database includes shell configuration file (greenplum_path.sh) that
+# determines the value of GPHOME and sets some additional variables
+# (LD_LIBRARY_PATH, PYTHONPATH, etc.). Users are expected to edit this file if
+# they have installed additional GPDB packages. The file greenplum_path.sh is
+# marked as a configuration file to avoid losing any edits made to it by the
+# user.
+file-in-usr-marked-as-conffile
+
+# Greenplum Database is delivered as a single monolithic package. Since GPDB is
+# a fork of postgres and contains non-ABI compatible changes to libraries such
+# as libpq, the GPDB-specific libraries are installed under a common directory
+# (GPHOME) so as not to conflict with upstream postgres packages.
+package-name-doesnt-match-sonames
+
+# These are PostgreSQL server plugins; some need no external libraries
+hardening-no-fortify-functions usr/local/greenplum-db-*/lib/*
+shared-library-lacks-prerequisites usr/local/greenplum-db-*/lib/*

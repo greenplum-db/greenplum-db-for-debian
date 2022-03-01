@@ -1,0 +1,2 @@
+export DEBFULLNAME="<your-name-here>"
+export DEBEMAIL="<your-email-here>"

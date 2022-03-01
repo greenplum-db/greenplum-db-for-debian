@@ -40,3 +40,10 @@ License: Apache-2.0
 Comment:
  On Debian systems a copy of the Apache-2.0 license can be viewed at:
  /usr/share/common-licenses/Apache-2.0
+
+Files: debian/*
+Copyright: Copyright 2021 VMware, Inc.
+License: Apache-2.0
+Comment:
+ On Debian systems a copy of the Apache-2.0 license can be viewed at:
+ /usr/share/common-licenses/Apache-2.0

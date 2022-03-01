@@ -7,11 +7,9 @@ Authored-by: Bradford D. Boyle <bboyle@pivotal.io>
  gpMgmt/Makefile | 18 +++++++++---------
  1 file changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/gpMgmt/Makefile b/gpMgmt/Makefile
-index d6372e5..6b002f5 100644
 --- a/gpMgmt/Makefile
 +++ b/gpMgmt/Makefile
-@@ -12,25 +12,25 @@ generate_greenplum_path_file:
+@@ -12,25 +12,25 @@
  	bin/generate-greenplum-path.sh > $(DESTDIR)$(prefix)/greenplum_path.sh
  
  install: generate_greenplum_path_file

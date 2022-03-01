@@ -25,7 +25,8 @@ Build-Depends:
  libzstd-dev,
  python2,
  zlib1g-dev
-Vcs-Git: git@gitlab.com:bradfordboyle/debian-gpdb.git -b 6
+Vcs-Browser: https://github.com/greenplum-db/greenplum-db-for-debian
+Vcs-Git: https://github.com/greenplum-db/greenplum-db-for-debian.git [gpdb]
 
 Package: greenplum-db-6
 Architecture: any
