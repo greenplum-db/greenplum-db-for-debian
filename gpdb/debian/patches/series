@@ -6,3 +6,4 @@
 0006-Update-scripts-to-use-python2-in-shebang.patch
 0007-Update-perl-scripts-to-use-correct-interpreter.patch
 0008-Ensure-that-distributed-files-are-plain-ASCII.patch
+0009-Fix-typo-of-gss_store_cred_into-in-configure-in.patch
