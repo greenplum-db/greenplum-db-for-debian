@@ -62,7 +62,7 @@ quilt add <filename>
 quilt refresh
 
 # add a description to the header
-quilt header -e
+quilt header --dep3 -e
 
 # finish editing, unapplying all patches, and leaving the source in the
 # downloaded condition
