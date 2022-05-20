@@ -9,21 +9,54 @@ Authored-by: Bradford D. Boyle <bboyle@pivotal.io>
 
 --- a/gpMgmt/bin/generate-greenplum-path.sh
 +++ b/gpMgmt/bin/generate-greenplum-path.sh
-@@ -17,14 +17,14 @@
+@@ -3,36 +3,32 @@
+ SET_PYTHONHOME="${1:-no}"
+ 
+ cat <<"EOF"
+-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+-if [ ! -L "${SCRIPT_DIR}" ]; then
+-    GPHOME=${SCRIPT_DIR}
+-else
+-    GPHOME=$(readlink "${SCRIPT_DIR}")
+-fi
++GPHOME=/usr/local/greenplum-db-6
+ EOF
+ 
++HOST_MULTIARCH="$(dpkg-architecture -qDEB_HOST_MULTIARCH)"
+ if [ "${SET_PYTHONHOME}" = "yes" ]; then
+-	cat <<-"EOF"
+-	PYTHONHOME="${GPHOME}/ext/python"
++	cat <<-EOF
++	PYTHONHOME="\${GPHOME}/ext/python"
  	export PYTHONHOME
  
- 	PATH="${PYTHONHOME}/bin:${PATH}"
+-	PATH="${PYTHONHOME}/bin:${PATH}"
 -	LD_LIBRARY_PATH="${PYTHONHOME}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-+	LD_LIBRARY_PATH="${PYTHONHOME}/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH)${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
++	PATH="\${PYTHONHOME}/bin:\${PATH}"
++	LD_LIBRARY_PATH="\${PYTHONHOME}/lib/${HOST_MULTIARCH}\${LD_LIBRARY_PATH:+:\$LD_LIBRARY_PATH}"
  	EOF
  fi
  
- cat <<"EOF"
+-cat <<"EOF"
 -PYTHONPATH="${GPHOME}/lib/python"
-+PYTHONPATH="${GPHOME}/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH)/python"
- PATH="${GPHOME}/bin:${PATH}"
+-PATH="${GPHOME}/bin:${PATH}"
 -LD_LIBRARY_PATH="${GPHOME}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-+LD_LIBRARY_PATH="${GPHOME}/lib/$(dpkg-architecture -qDEB_HOST_MULTIARCH)${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+-
+-if [ -e "${GPHOME}/etc/openssl.cnf" ]; then
+-	OPENSSL_CONF="${GPHOME}/etc/openssl.cnf"
++cat <<EOF
++PYTHONPATH="\${GPHOME}/lib/${HOST_MULTIARCH}/python"
++PATH="\${GPHOME}/bin:\${PATH}"
++LD_LIBRARY_PATH="\${GPHOME}/lib/${HOST_MULTIARCH}\${LD_LIBRARY_PATH:+:\$LD_LIBRARY_PATH}"
++
++if [ -e "\${GPHOME}/etc/openssl.cnf" ]; then
++	OPENSSL_CONF="\${GPHOME}/etc/openssl.cnf"
++	export OPENSSL_CONF
+ fi
  
- if [ -e "${GPHOME}/etc/openssl.cnf" ]; then
- 	OPENSSL_CONF="${GPHOME}/etc/openssl.cnf"
+ export GPHOME
+ export PATH
+ export PYTHONPATH
+ export LD_LIBRARY_PATH
+-export OPENSSL_CONF
+ EOF
