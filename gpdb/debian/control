@@ -5,7 +5,7 @@ Priority: optional
 Standards-Version: 4.5.1
 Build-Depends:
  bison,
- debhelper (>= 9),
+ debhelper-compat (= 13),
  flex,
  libapr1-dev,
  libaprutil1-dev,
@@ -26,7 +26,7 @@ Build-Depends:
  python2,
  zlib1g-dev
 Vcs-Browser: https://github.com/greenplum-db/greenplum-db-for-debian
-Vcs-Git: https://github.com/greenplum-db/greenplum-db-for-debian.git [gpdb]
+Vcs-Git: https://github.com/greenplum-db/greenplum-db-for-debian.git -b main [gpdb]
 
 Package: greenplum-db-6
 Architecture: any
