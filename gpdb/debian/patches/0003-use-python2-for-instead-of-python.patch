@@ -54,3 +54,14 @@ Authored-by: Bradford D. Boyle <bradfordb@vmware.com>
  	cp -r $(PYLIB_SRC_EXT)/$(PYYAML_DIR)/build/lib*/* $(PYLIB_DIR)
  
  #
+--- a/gpMgmt/bin/gpinitsystem
++++ b/gpMgmt/bin/gpinitsystem
+@@ -590,7 +590,7 @@
+         print h,
+ END_PYTHON_CODE
+ 
+-	MACHINE_LIST=(`$CAT $MACHINE_LIST_FILE|python -c "$HOSTNAME_SORTER"`)
++	MACHINE_LIST=(`$CAT $MACHINE_LIST_FILE|python2 -c "$HOSTNAME_SORTER"`)
+ 	M_HOST_ARRAY=()
+ 	MCOUNT=0
+ 	for MHOST in ${MACHINE_LIST[@]}
