@@ -23,6 +23,7 @@ Build-Depends:
  libxml2-dev,
  libyaml-dev,
  libzstd-dev,
+ pkg-config,
  python2,
  zlib1g-dev
 Vcs-Browser: https://github.com/greenplum-db/greenplum-db-for-debian
