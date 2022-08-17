@@ -9,7 +9,7 @@ Authored-by: Bradford D. Boyle <bboyle@pivotal.io>
 
 --- a/gpMgmt/Makefile
 +++ b/gpMgmt/Makefile
-@@ -12,25 +12,25 @@
+@@ -12,22 +12,22 @@
  	bin/generate-greenplum-path.sh > $(DESTDIR)$(prefix)/greenplum_path.sh
  
  install: generate_greenplum_path_file
@@ -26,21 +26,17 @@ Authored-by: Bradford D. Boyle <bboyle@pivotal.io>
 -	    cp -rp bin/ext/psutil $(DESTDIR)$(prefix)/lib/python ; \
 +	    cp -rp bin/ext/psutil $(DESTDIR)$(libdir)/python ; \
  	fi
- 	if [ -e bin/ext/pygresql ]; then \
--	    cp -rp bin/ext/pygresql $(DESTDIR)$(prefix)/lib/python ; \
-+	    cp -rp bin/ext/pygresql $(DESTDIR)$(libdir)/python ; \
+ 	if [ -e bin/ext/pgdb.py ]; then \
+-	    cp -rp bin/ext/pgdb.py $(DESTDIR)$(prefix)/lib/python && \
+-	    cp -rp bin/ext/pg.py $(DESTDIR)$(prefix)/lib/python && \
+-	    cp -rp bin/ext/_pg*.so $(DESTDIR)$(prefix)/lib/python ; \
++	    cp -rp bin/ext/pgdb.py $(DESTDIR)$(libdir)/python && \
++	    cp -rp bin/ext/pg.py $(DESTDIR)$(libdir)/python && \
++	    cp -rp bin/ext/_pg*.so $(DESTDIR)$(libdir)/python ; \
  	fi
  	if [ -e bin/ext/yaml ]; then \
 -	    cp -rp bin/ext/yaml $(DESTDIR)$(prefix)/lib/python ; \
 +	    cp -rp bin/ext/yaml $(DESTDIR)$(libdir)/python ; \
- 	fi
- 	if [ -e bin/ext/subprocess32.py ]; then \
--	    cp -p bin/ext/subprocess32.py $(DESTDIR)$(prefix)/lib/python ; \
--	    cp -p bin/ext/subprocess32-ChangeLog $(DESTDIR)$(prefix)/lib/python ; \
--	    cp -p bin/ext/_posixsubprocess.so $(DESTDIR)$(prefix)/lib/python ; \
-+	    cp -p bin/ext/subprocess32.py $(DESTDIR)$(libdir)/python ; \
-+	    cp -p bin/ext/subprocess32-ChangeLog $(DESTDIR)$(libdir)/python ; \
-+	    cp -p bin/ext/_posixsubprocess.so $(DESTDIR)$(libdir)/python ; \
  	fi
  
  clean distclean:

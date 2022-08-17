@@ -3,20 +3,10 @@ Author: Bradford D. Boyle <bradford.d.boyle@gmail.com>
 Last-Update: 2022-04-09
 ---
 This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
---- a/src/backend/gporca/libgpopt/include/gpopt/xforms/CJoinOrderDPv2.h
-+++ b/src/backend/gporca/libgpopt/include/gpopt/xforms/CJoinOrderDPv2.h
-@@ -187,6 +187,7 @@
- 			: m_group_info(g), m_expr_index(ix)
- 		{
- 		}
-+		SGroupAndExpression &operator=(const SGroupAndExpression &other) = default;
- 		SGroupAndExpression(const SGroupAndExpression &other)
- 			: m_group_info(other.m_group_info), m_expr_index(other.m_expr_index)
- 		{
 --- a/src/backend/gporca/libgpos/include/gpos/common/CDouble.h
 +++ b/src/backend/gporca/libgpos/include/gpos/common/CDouble.h
-@@ -112,6 +112,9 @@
- 		return (*this);
+@@ -103,6 +103,9 @@
+ 		return m_d;
  	}
  
 +	// copy constructor

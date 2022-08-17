@@ -1,57 +1,66 @@
 #!/usr/bin/make -f
 
-MAJOR_VER := 6
+MAJOR_VER := 7
 
 include /usr/share/dpkg/pkg-info.mk
 
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-export DEB_CFLAGS_MAINT_APPEND = -Wno-error=implicit-fallthrough
+
+CONFIGURE_FLAGS = \
+  --prefix=/usr/local/greenplum-db-$(MAJOR_VER) \
+  --disable-rpath \
+  --disable-tap-tests \
+  --disable-gpperfmon \
+  --with-gssapi \
+  --enable-mapreduce \
+  --enable-orafce \
+  --enable-orca \
+  --with-libxml \
+  --with-pgport=5432 \
+  --with-libedit-preferred \
+  --disable-debug-extensions \
+  --with-perl \
+  --with-python \
+  --with-openssl \
+  --with-pam \
+  --with-ldap \
+  --enable-debug
 
 %:
 	dh $@
-
-override_dh_autoreconf:
-	dh_autoreconf ./debian/autoreconf.sh
 
 # TODO: how to properly clean gpdb source
 override_dh_auto_clean:
 
 override_dh_auto_configure:
-	dh_auto_configure -- \
-            --prefix=/usr/local/greenplum-db-$(MAJOR_VER) \
-            --disable-rpath \
-            --disable-tap-tests \
-            --disable-gpperfmon \
-            --with-gssapi \
-            --enable-mapreduce \
-            --enable-orafce \
-            --enable-orca \
-            --with-libxml \
-            --with-pgport=5432 \
-            --with-libedit-preferred \
-            --disable-debug-extensions \
-            --with-perl \
-            --with-python \
-            --with-openssl \
-            --with-pam \
-            --with-ldap \
-            --enable-debug
-	dh_auto_configure --sourcedirectory=gpAux/extensions/pgbouncer/source -- \
-	    --prefix=/usr/local/greenplum-db-$(MAJOR_VER) \
-	    --with-libevent \
-	    --with-pam \
-	    --enable-evdns
+	dh_auto_configure -- $(CONFIGURE_FLAGS)
 
 override_dh_auto_build:
-	dh_auto_build
-	dh_auto_build --sourcedirectory=gpAux/extensions/pgbouncer/source
+	# set MAKELEVEL to 0 to force building submake-generated-headers in src/Makefile.global(.in)
+	MAKELEVEL=0 $(MAKE) -C src all
+	$(MAKE) -C config all
+	$(MAKE) -C contrib/auto_explain all
+	$(MAKE) -C contrib/citext all
+	$(MAKE) -C contrib/file_fdw all
+	$(MAKE) -C contrib/formatter all
+	$(MAKE) -C contrib/formatter_fixedwidth all
+	$(MAKE) -C contrib/fuzzystrmatch all
+	$(MAKE) -C contrib/extprotocol all
+	$(MAKE) -C contrib/dblink all
+	$(MAKE) -C contrib/indexscan all
+	$(MAKE) -C contrib/pageinspect all # needed by src/test/isolation
+	$(MAKE) -C contrib/hstore all
+	$(MAKE) -C contrib/pgcrypto all
+	$(MAKE) -C contrib/btree_gin all
+	$(MAKE) -C contrib/pg_trgm all
+	$(MAKE) -C contrib/sslinfo all
+	$(MAKE) -C gpMgmt all
+	$(MAKE) -C gpcontrib all
 
 override_dh_shlibdeps:
-	dh_shlibdeps -l /usr/local/greenplum-db-$(MAJOR_VER)/lib/x86_64-linux-gnu
-
-override_dh_auto_install:
-	dh_auto_install
-	dh_auto_install --sourcedirectory=gpAux/extensions/pgbouncer/source
+	dh_shlibdeps -l /usr/local/greenplum-db-$(MAJOR_VER)/lib/$(DEB_HOST_MULTIARCH)
 
 # TODO: how to test
 override_dh_auto_test:

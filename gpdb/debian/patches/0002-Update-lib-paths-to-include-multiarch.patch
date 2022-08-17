@@ -9,33 +9,35 @@ Authored-by: Bradford D. Boyle <bboyle@pivotal.io>
 
 --- a/gpMgmt/bin/generate-greenplum-path.sh
 +++ b/gpMgmt/bin/generate-greenplum-path.sh
-@@ -3,36 +3,32 @@
- SET_PYTHONHOME="${1:-no}"
+@@ -1,43 +1,22 @@
+ #!/usr/bin/env bash
  
  cat <<"EOF"
--SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+-if test -n "${ZSH_VERSION:-}"; then
+-    # zsh
+-    SCRIPT_PATH="${(%):-%x}"
+-elif test -n "${BASH_VERSION:-}"; then
+-    # bash
+-    SCRIPT_PATH="${BASH_SOURCE[0]}"
+-else
+-    # Unknown shell, hope below works.
+-    # Tested with dash
+-    result=$(lsof -p $$ -Fn | tail --lines=1 | xargs --max-args=2 | cut --delimiter=' ' --fields=2)
+-    SCRIPT_PATH=${result#n}
+-fi
+-
+-if test -z "$SCRIPT_PATH"; then
+-    echo "The shell cannot be identified. \$GPHOME may not be set correctly." >&2
+-fi
+-SCRIPT_DIR="$(cd "$(dirname "${SCRIPT_PATH}")" >/dev/null 2>&1 && pwd)"
+-
 -if [ ! -L "${SCRIPT_DIR}" ]; then
 -    GPHOME=${SCRIPT_DIR}
 -else
 -    GPHOME=$(readlink "${SCRIPT_DIR}")
 -fi
-+GPHOME=/usr/local/greenplum-db-6
++GPHOME=/usr/local/greenplum-db-7
  EOF
- 
-+HOST_MULTIARCH="$(dpkg-architecture -qDEB_HOST_MULTIARCH)"
- if [ "${SET_PYTHONHOME}" = "yes" ]; then
--	cat <<-"EOF"
--	PYTHONHOME="${GPHOME}/ext/python"
-+	cat <<-EOF
-+	PYTHONHOME="\${GPHOME}/ext/python"
- 	export PYTHONHOME
- 
--	PATH="${PYTHONHOME}/bin:${PATH}"
--	LD_LIBRARY_PATH="${PYTHONHOME}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-+	PATH="\${PYTHONHOME}/bin:\${PATH}"
-+	LD_LIBRARY_PATH="\${PYTHONHOME}/lib/${HOST_MULTIARCH}\${LD_LIBRARY_PATH:+:\$LD_LIBRARY_PATH}"
- 	EOF
- fi
  
 -cat <<"EOF"
 -PYTHONPATH="${GPHOME}/lib/python"
@@ -44,6 +46,7 @@ Authored-by: Bradford D. Boyle <bboyle@pivotal.io>
 -
 -if [ -e "${GPHOME}/etc/openssl.cnf" ]; then
 -	OPENSSL_CONF="${GPHOME}/etc/openssl.cnf"
++HOST_MULTIARCH="$(dpkg-architecture -qDEB_HOST_MULTIARCH)"
 +cat <<EOF
 +PYTHONPATH="\${GPHOME}/lib/${HOST_MULTIARCH}/python"
 +PATH="\${GPHOME}/bin:\${PATH}"
