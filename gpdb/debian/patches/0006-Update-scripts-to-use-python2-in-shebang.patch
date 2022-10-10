@@ -1,94 +1,6 @@
-From: "Bradford D. Boyle" <bradford.d.boyle@gmail.com>
-Date: Wed, 1 Sep 2021 18:39:00 -0700
-Subject: Update scripts to use python2 in shebang
-
----
- gpMgmt/bin/analyzedb                                          | 2 +-
- gpMgmt/bin/gpactivatestandby                                  | 2 +-
- gpMgmt/bin/gpaddmirrors                                       | 2 +-
- gpMgmt/bin/gpcheckcat                                         | 2 +-
- gpMgmt/bin/gpcheckcat_modules/foreign_key_check.py            | 2 +-
- gpMgmt/bin/gpcheckcat_modules/orphan_toast_table_issues.py    | 2 +-
- gpMgmt/bin/gpcheckcat_modules/orphaned_toast_tables_check.py  | 2 +-
- gpMgmt/bin/gpcheckcat_modules/repair.py                       | 2 +-
- gpMgmt/bin/gpcheckcat_modules/repair_missing_extraneous.py    | 2 +-
- gpMgmt/bin/gpcheckcat_modules/unique_index_violation_check.py | 2 +-
- gpMgmt/bin/gpcheckperf                                        | 2 +-
- gpMgmt/bin/gpcheckresgroupimpl                                | 2 +-
- gpMgmt/bin/gpconfig                                           | 2 +-
- gpMgmt/bin/gpdeletesystem                                     | 2 +-
- gpMgmt/bin/gpexpand                                           | 2 +-
- gpMgmt/bin/gpinitstandby                                      | 2 +-
- gpMgmt/bin/gpload.py                                          | 2 +-
- gpMgmt/bin/gplogfilter                                        | 2 +-
- gpMgmt/bin/gpmovemirrors                                      | 2 +-
- gpMgmt/bin/gppkg                                              | 2 +-
- gpMgmt/bin/gppylib/commands/base.py                           | 2 +-
- gpMgmt/bin/gppylib/commands/dca.py                            | 2 +-
- gpMgmt/bin/gppylib/commands/gp.py                             | 2 +-
- gpMgmt/bin/gppylib/commands/pg.py                             | 2 +-
- gpMgmt/bin/gppylib/commands/unix.py                           | 2 +-
- gpMgmt/bin/gppylib/datetimeutils.py                           | 2 +-
- gpMgmt/bin/gppylib/db/catalog.py                              | 2 +-
- gpMgmt/bin/gppylib/db/dbconn.py                               | 2 +-
- gpMgmt/bin/gppylib/fault_injection.py                         | 2 +-
- gpMgmt/bin/gppylib/gp_era.py                                  | 2 +-
- gpMgmt/bin/gppylib/gparray.py                                 | 2 +-
- gpMgmt/bin/gppylib/gpcatalog.py                               | 2 +-
- gpMgmt/bin/gppylib/gplog.py                                   | 2 +-
- gpMgmt/bin/gppylib/gpparseopts.py                             | 2 +-
- gpMgmt/bin/gppylib/gpresgroup.py                              | 2 +-
- gpMgmt/bin/gppylib/gpsubprocess.py                            | 2 +-
- gpMgmt/bin/gppylib/gpunit                                     | 2 +-
- gpMgmt/bin/gppylib/gpversion.py                               | 2 +-
- gpMgmt/bin/gppylib/logfilter.py                               | 2 +-
- gpMgmt/bin/gppylib/operations/deletesystem.py                 | 2 +-
- gpMgmt/bin/gppylib/operations/initstandby.py                  | 2 +-
- gpMgmt/bin/gppylib/operations/reload.py                       | 2 +-
- gpMgmt/bin/gppylib/operations/segment_tablespace_locations.py | 2 +-
- gpMgmt/bin/gppylib/parseutils.py                              | 2 +-
- gpMgmt/bin/gppylib/pgconf.py                                  | 2 +-
- gpMgmt/bin/gppylib/programs/clsAddMirrors.py                  | 2 +-
- gpMgmt/bin/gppylib/programs/clsRecoverSegment.py              | 2 +-
- gpMgmt/bin/gppylib/programs/clsSystemState.py                 | 2 +-
- gpMgmt/bin/gppylib/system/ComputeCatalogUpdate.py             | 2 +-
- gpMgmt/bin/gppylib/system/configurationImplGpdb.py            | 2 +-
- gpMgmt/bin/gppylib/system/configurationInterface.py           | 2 +-
- gpMgmt/bin/gppylib/system/environment.py                      | 2 +-
- gpMgmt/bin/gppylib/system/fileSystemImplOs.py                 | 2 +-
- gpMgmt/bin/gppylib/system/fileSystemImplTest.py               | 2 +-
- gpMgmt/bin/gppylib/system/fileSystemInterface.py              | 2 +-
- gpMgmt/bin/gppylib/system/info.py                             | 2 +-
- gpMgmt/bin/gppylib/system/osImplNative.py                     | 2 +-
- gpMgmt/bin/gppylib/system/osInterface.py                      | 2 +-
- gpMgmt/bin/gppylib/unit2                                      | 2 +-
- gpMgmt/bin/gppylib/userinput.py                               | 2 +-
- gpMgmt/bin/gppylib/util/gp_utils.py                           | 2 +-
- gpMgmt/bin/gppylib/util/ssh_utils.py                          | 2 +-
- gpMgmt/bin/gprecoverseg                                       | 2 +-
- gpMgmt/bin/gpreload                                           | 2 +-
- gpMgmt/bin/gpscp                                              | 2 +-
- gpMgmt/bin/gpsd                                               | 2 +-
- gpMgmt/bin/gpssh                                              | 2 +-
- gpMgmt/bin/gpssh-exkeys                                       | 2 +-
- gpMgmt/bin/gpstart                                            | 2 +-
- gpMgmt/bin/gpstate                                            | 2 +-
- gpMgmt/bin/gpstop                                             | 2 +-
- gpMgmt/bin/gpsys1                                             | 2 +-
- gpMgmt/bin/lib/gpconfigurenewsegment                          | 2 +-
- gpMgmt/bin/lib/gppinggpfdist.py                               | 2 +-
- gpMgmt/bin/lib/gpstate.py                                     | 2 +-
- gpMgmt/bin/lib/multidd                                        | 2 +-
- gpMgmt/bin/minirepro                                          | 2 +-
- gpMgmt/sbin/gpcleansegmentdir.py                              | 2 +-
- gpMgmt/sbin/gpconfig_helper.py                                | 2 +-
- gpMgmt/sbin/gpgetstatususingtransition.py                     | 2 +-
- gpMgmt/sbin/gpoperation.py                                    | 2 +-
- gpMgmt/sbin/gpsegstart.py                                     | 2 +-
- gpMgmt/sbin/gpsegstop.py                                      | 2 +-
- gpMgmt/sbin/packcore                                          | 2 +-
- gpMgmt/sbin/seg_update_pg_hba.py                              | 2 +-
- 85 files changed, 85 insertions(+), 85 deletions(-)
+Description: Update scripts to use versioned Python shebang
+Author: Bradford D. Boyle <bradford.d.boyle@gmail.com>
+Last-Update: 2022-10-09
 
 --- a/gpMgmt/bin/analyzedb
 +++ b/gpMgmt/bin/analyzedb
@@ -786,3 +698,19 @@ Subject: Update scripts to use python2 in shebang
  #
  # Copyright 2021 VMware, Inc.
  # SPDX-License-Identifier: Apache-2.0
+--- a/gpMgmt/sbin/gpsegrecovery.py
++++ b/gpMgmt/sbin/gpsegrecovery.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ 
+ from gppylib.recoveryinfo import RecoveryErrorType
+ from gppylib.commands.pg import PgBaseBackup, PgRewind
+--- a/gpMgmt/sbin/gpsegsetuprecovery.py
++++ b/gpMgmt/sbin/gpsegsetuprecovery.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ import os
+ 
+ from gppylib import recoveryinfo

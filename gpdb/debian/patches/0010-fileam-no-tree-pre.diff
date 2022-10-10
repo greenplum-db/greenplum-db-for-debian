@@ -1,0 +1,31 @@
+Description: Declare variables used in PG_TRY/PG_CATCH volatile
+Origin: https://github.com/greenplum-db/gpdb/issues/8262#issuecomment-516328162
+Forwarded: no
+Last-Update: 2022-10-08
+--- a/src/backend/access/external/Makefile
++++ b/src/backend/access/external/Makefile
+@@ -13,3 +13,4 @@
+ 
+ include $(top_srcdir)/src/backend/common.mk
+ 
++fileam.o: CFLAGS+=-fno-tree-pre
+--- a/src/backend/cdb/cdbtm.c
++++ b/src/backend/cdb/cdbtm.c
+@@ -558,7 +558,7 @@
+ static void
+ doNotifyingCommitPrepared(void)
+ {
+-	bool		succeeded;
++	volatile bool		succeeded;
+ 	int			retry = 0;
+ 	volatile int savedInterruptHoldoffCount;
+ 	MemoryContext oldcontext = CurrentMemoryContext;;
+@@ -680,7 +680,7 @@
+ retryAbortPrepared(void)
+ {
+ 	int			retry = 0;
+-	bool		succeeded = false;
++	volatile bool		succeeded = false;
+ 	volatile int savedInterruptHoldoffCount;
+ 	MemoryContext oldcontext = CurrentMemoryContext;;
+ 

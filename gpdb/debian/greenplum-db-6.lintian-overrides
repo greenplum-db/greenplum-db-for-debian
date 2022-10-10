@@ -12,13 +12,9 @@ package-contains-documentation-outside-usr-share-doc
 # marked as a configuration file to avoid losing any edits made to it by the
 # user.
 file-in-usr-marked-as-conffile
-
-# Greenplum Database is delivered as a single monolithic package. Since GPDB is
-# a fork of postgres and contains non-ABI compatible changes to libraries such
-# as libpq, the GPDB-specific libraries are installed under a common directory
-# (GPHOME) so as not to conflict with upstream postgres packages.
-package-name-doesnt-match-sonames
+non-etc-file-marked-as-conffile
 
 # These are PostgreSQL server plugins; some need no external libraries
-hardening-no-fortify-functions usr/local/greenplum-db-*/lib/*
-shared-library-lacks-prerequisites usr/local/greenplum-db-*/lib/*
+hardening-no-fortify-functions [usr/local/greenplum-db-?/lib/*]
+library-not-linked-against-libc [usr/local/greenplum-db-?/lib/*]
+shared-library-lacks-prerequisites [usr/local/greenplum-db-?/lib/*]

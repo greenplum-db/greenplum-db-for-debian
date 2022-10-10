@@ -7,3 +7,5 @@
 0007-Update-perl-scripts-to-use-correct-interpreter.patch
 0008-Ensure-that-distributed-files-are-plain-ASCII.patch
 0009-Add-explicit-default-copy-constructor-and-assignment.patch
+0010-fileam-no-tree-pre.diff
+0011-rename-pipe-to-orafce_pipe.diff

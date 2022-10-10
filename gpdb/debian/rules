@@ -58,3 +58,28 @@ override_dh_auto_test:
 
 # disable dh_usrlocal since we are installing there
 override_dh_usrlocal:
+
+override_dh_fixperms:
+	dh_fixperms
+	chmod -x \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/gpcheckcat_modules/__init__.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/gpcheckcat_modules/leaked_schema_dropper.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/gpconfig_modules/__init__.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/gpconfig_modules/compare_segment_guc.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/gpconfig_modules/database_segment_guc.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/gpconfig_modules/file_segment_guc.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/gpconfig_modules/guc_collection.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/gpconfig_modules/parse_guc_metadata.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/gpconfig_modules/segment_guc.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/gpssh_modules/__init__.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/gpssh_modules/gppxssh_wrapper.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/lib/__init__.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/lib/gp_bash_version.sh \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/lib/pexpect/__init__.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/lib/pexpect/pxssh.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/lib/x86_64-linux-gnu/postgresql/pgxs/src/test/regress/GPTest.pm \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/lib/x86_64-linux-gnu/postgresql/pgxs/src/test/regress/atmsort.pm \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/lib/x86_64-linux-gnu/postgresql/pgxs/src/test/regress/explain.pm \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/lib/x86_64-linux-gnu/python/gppylib/operations/test_utils_helper.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/lib/x86_64-linux-gnu/python/gppylib/programs/gppkg.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/sbin/recovery_base.py
