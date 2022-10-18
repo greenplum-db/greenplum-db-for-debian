@@ -2,6 +2,7 @@
 
 MAJOR_VER := 6
 
+include /usr/share/dpkg/architecture.mk
 include /usr/share/dpkg/pkg-info.mk
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
@@ -47,7 +48,7 @@ override_dh_auto_build:
 	dh_auto_build --sourcedirectory=gpAux/extensions/pgbouncer/source
 
 override_dh_shlibdeps:
-	dh_shlibdeps -l /usr/local/greenplum-db-$(MAJOR_VER)/lib/x86_64-linux-gnu
+	dh_shlibdeps -l /usr/local/greenplum-db-$(MAJOR_VER)/lib/$(DEB_TARGET_MULTIARCH)
 
 override_dh_auto_install:
 	dh_auto_install
@@ -77,9 +78,9 @@ override_dh_fixperms:
 		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/lib/gp_bash_version.sh \
 		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/lib/pexpect/__init__.py \
 		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/bin/lib/pexpect/pxssh.py \
-		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/lib/x86_64-linux-gnu/postgresql/pgxs/src/test/regress/GPTest.pm \
-		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/lib/x86_64-linux-gnu/postgresql/pgxs/src/test/regress/atmsort.pm \
-		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/lib/x86_64-linux-gnu/postgresql/pgxs/src/test/regress/explain.pm \
-		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/lib/x86_64-linux-gnu/python/gppylib/operations/test_utils_helper.py \
-		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/lib/x86_64-linux-gnu/python/gppylib/programs/gppkg.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/lib/$(DEB_TARGET_MULTIARCH)/postgresql/pgxs/src/test/regress/GPTest.pm \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/lib/$(DEB_TARGET_MULTIARCH)/postgresql/pgxs/src/test/regress/atmsort.pm \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/lib/$(DEB_TARGET_MULTIARCH)/postgresql/pgxs/src/test/regress/explain.pm \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/lib/$(DEB_TARGET_MULTIARCH)/python/gppylib/operations/test_utils_helper.py \
+		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/lib/$(DEB_TARGET_MULTIARCH)/python/gppylib/programs/gppkg.py \
 		debian/greenplum-db-$(MAJOR_VER)/usr/local/greenplum-db-$(MAJOR_VER)/sbin/recovery_base.py
