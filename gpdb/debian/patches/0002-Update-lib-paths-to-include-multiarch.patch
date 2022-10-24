@@ -46,11 +46,11 @@ Authored-by: Bradford D. Boyle <bboyle@pivotal.io>
 -
 -if [ -e "${GPHOME}/etc/openssl.cnf" ]; then
 -	OPENSSL_CONF="${GPHOME}/etc/openssl.cnf"
-+HOST_MULTIARCH="$(dpkg-architecture -qDEB_HOST_MULTIARCH)"
++TARGET_MULTIARCH="$(dpkg-architecture -qDEB_TARGET_MULTIARCH)"
 +cat <<EOF
-+PYTHONPATH="\${GPHOME}/lib/${HOST_MULTIARCH}/python"
++PYTHONPATH="\${GPHOME}/lib/${TARGET_MULTIARCH}/python"
 +PATH="\${GPHOME}/bin:\${PATH}"
-+LD_LIBRARY_PATH="\${GPHOME}/lib/${HOST_MULTIARCH}\${LD_LIBRARY_PATH:+:\$LD_LIBRARY_PATH}"
++LD_LIBRARY_PATH="\${GPHOME}/lib/${TARGET_MULTIARCH}\${LD_LIBRARY_PATH:+:\$LD_LIBRARY_PATH}"
 +
 +if [ -e "\${GPHOME}/etc/openssl.cnf" ]; then
 +	OPENSSL_CONF="\${GPHOME}/etc/openssl.cnf"

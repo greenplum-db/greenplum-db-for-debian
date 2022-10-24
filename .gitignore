@@ -15,4 +15,5 @@ greenplum-db-7-dbgsym_*.deb
 greenplum-db-7_*.deb
 
 gpdb/**
+!gpdb/debian/
 !gpdb/debian/**
