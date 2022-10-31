@@ -27,7 +27,8 @@ CONFIGURE_FLAGS = \
   --with-openssl \
   --with-pam \
   --with-ldap \
-  --enable-debug
+  --enable-debug \
+  --with-system-tzdata=/usr/share/zoneinfo
 
 %:
 	dh $@
