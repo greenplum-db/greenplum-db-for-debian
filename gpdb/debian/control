@@ -39,5 +39,9 @@ Depends:
  net-tools,
  openssh-server,
  python2
-Description: Greenplum Database
- TODO
+Description: Massively Parallel PostgreSQL for Analytics
+ Greenplum Database (GPDB) is an advanced, fully featured, open source data
+ warehouse, based on PostgreSQL. It provides powerful and rapid analytics on
+ petabyte scale data volumes. Uniquely geared toward big data analytics,
+ Greenplum Database is powered by the world’s most advanced cost-based query
+ optimizer delivering high analytical query performance on large data volumes.
