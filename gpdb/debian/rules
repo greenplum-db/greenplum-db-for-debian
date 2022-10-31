@@ -36,7 +36,8 @@ override_dh_auto_configure:
             --with-openssl \
             --with-pam \
             --with-ldap \
-            --enable-debug
+            --enable-debug \
+            --with-system-tzdata=/usr/share/zoneinfo
 	dh_auto_configure --sourcedirectory=gpAux/extensions/pgbouncer/source -- \
 	    --prefix=/usr/local/greenplum-db-$(MAJOR_VER) \
 	    --with-libevent \
