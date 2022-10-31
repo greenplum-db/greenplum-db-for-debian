@@ -11,9 +11,13 @@ gpdb_*.dsc
 gpdb_*.build
 gpdb_*.buildinfo
 gpdb_*.changes
-greenplum-db-7-dbgsym_*.deb
-greenplum-db-7_*.deb
+greenplum-db-?-dbgsym_*.deb
+greenplum-db-?_*.deb
 
+# ignore upload files
+gpdb_*.upload
+
+# ignore unpacked source code
 gpdb/**
 !gpdb/debian/
 !gpdb/debian/**
