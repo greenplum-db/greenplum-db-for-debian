@@ -1,6 +1,6 @@
 ---
 name: CI
-on:
+on:  # yamllint disable-line rule:truthy
   push:
   pull_request:
     types: [opened, reopened]
@@ -22,3 +22,4 @@ jobs:
       uses: ibiqlik/action-yamllint@v3
       with:
         file_or_dir: .github
+        config_file: .github/yamllint.yml
