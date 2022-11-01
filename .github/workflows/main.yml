@@ -1,6 +1,7 @@
 ---
 name: CI
 on:
+  push:
   pull_request:
     types: [opened, reopened]
 
@@ -16,3 +17,8 @@ jobs:
       uses: docker://avtodev/markdown-lint:v1
       with:
         args: '.'
+
+    - name: Lint yaml files
+      uses: ibiqlik/action-yamllint@v3
+      with:
+        file_or_dir: .github
