@@ -16,7 +16,7 @@ Authored-by: Bradford D. Boyle <bradfordb@vmware.com>
 -	python gpconfig_modules/parse_guc_metadata.py $(DESTDIR)$(prefix)
 +	$(PYTHON) gpconfig_modules/parse_guc_metadata.py $(DESTDIR)$(prefix)
  
- ifneq "$(wildcard $(CURDIR)/pythonSrc/ext/*.tar.gz)" ""
+ ifeq ($(with_pythonsrc_ext), yes)
  install: installdirs installprograms core psutil pygresql pyyaml
 @@ -84,7 +84,7 @@
  	if [ `uname -s` = 'OpenBSD' ]; then \

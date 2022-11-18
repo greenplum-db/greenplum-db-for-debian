@@ -37,7 +37,8 @@ override_dh_auto_configure:
             --with-pam \
             --with-ldap \
             --enable-debug \
-            --with-system-tzdata=/usr/share/zoneinfo
+            --with-system-tzdata=/usr/share/zoneinfo \
+            --with-pythonsrc-ext
 	dh_auto_configure --sourcedirectory=gpAux/extensions/pgbouncer/source -- \
 	    --prefix=/usr/local/greenplum-db-$(MAJOR_VER) \
 	    --with-libevent \
