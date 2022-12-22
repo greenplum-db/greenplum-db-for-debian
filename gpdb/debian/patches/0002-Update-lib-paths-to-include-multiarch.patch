@@ -9,7 +9,7 @@ Authored-by: Bradford D. Boyle <bboyle@pivotal.io>
 
 --- a/gpMgmt/bin/generate-greenplum-path.sh
 +++ b/gpMgmt/bin/generate-greenplum-path.sh
-@@ -1,43 +1,22 @@
+@@ -1,45 +1,26 @@
  #!/usr/bin/env bash
  
  cat <<"EOF"
@@ -30,28 +30,28 @@ Authored-by: Bradford D. Boyle <bboyle@pivotal.io>
 -    echo "The shell cannot be identified. \$GPHOME may not be set correctly." >&2
 -fi
 -SCRIPT_DIR="$(cd "$(dirname "${SCRIPT_PATH}")" >/dev/null 2>&1 && pwd)"
--
++GPHOME=/usr/local/greenplum-db-7
++EOF
+ 
 -if [ ! -L "${SCRIPT_DIR}" ]; then
 -    GPHOME=${SCRIPT_DIR}
 -else
 -    GPHOME=$(readlink "${SCRIPT_DIR}")
 -fi
-+GPHOME=/usr/local/greenplum-db-7
++TARGET_MULTIARCH="$(dpkg-architecture -qDEB_TARGET_MULTIARCH)"
++cat <<EOF
++PYTHONPATH="\${GPHOME}/lib/${TARGET_MULTIARCH}/python"
++PATH="\${GPHOME}/bin:\${PATH}"
++LD_LIBRARY_PATH="\${GPHOME}/lib/${TARGET_MULTIARCH}\${LD_LIBRARY_PATH:+:\$LD_LIBRARY_PATH}"
  EOF
  
--cat <<"EOF"
+ cat <<"EOF"
 -PYTHONPATH="${GPHOME}/lib/python"
 -PATH="${GPHOME}/bin:${PATH}"
 -LD_LIBRARY_PATH="${GPHOME}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 -
 -if [ -e "${GPHOME}/etc/openssl.cnf" ]; then
 -	OPENSSL_CONF="${GPHOME}/etc/openssl.cnf"
-+TARGET_MULTIARCH="$(dpkg-architecture -qDEB_TARGET_MULTIARCH)"
-+cat <<EOF
-+PYTHONPATH="\${GPHOME}/lib/${TARGET_MULTIARCH}/python"
-+PATH="\${GPHOME}/bin:\${PATH}"
-+LD_LIBRARY_PATH="\${GPHOME}/lib/${TARGET_MULTIARCH}\${LD_LIBRARY_PATH:+:\$LD_LIBRARY_PATH}"
-+
 +if [ -e "\${GPHOME}/etc/openssl.cnf" ]; then
 +	OPENSSL_CONF="\${GPHOME}/etc/openssl.cnf"
 +	export OPENSSL_CONF
@@ -62,4 +62,6 @@ Authored-by: Bradford D. Boyle <bboyle@pivotal.io>
  export PYTHONPATH
  export LD_LIBRARY_PATH
 -export OPENSSL_CONF
- EOF
+ 
+ # Load the external environment variable files
+ if [ -d "${GPHOME}/etc/environment.d" ]; then
