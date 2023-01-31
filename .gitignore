@@ -12,6 +12,7 @@ gpdb_*.build
 gpdb_*.buildinfo
 gpdb_*.changes
 greenplum-db-?-dbgsym_*.deb
+greenplum-db-?-dbgsym_*.ddeb
 greenplum-db-?_*.deb
 
 # ignore upload files

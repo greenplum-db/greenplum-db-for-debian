@@ -1,5 +1,5 @@
-gpdb (6.23.0-1) UNRELEASED; urgency=medium
+gpdb (6.23.0-2) UNRELEASED; urgency=medium
 
   * Initial release. (Closes: #XXXXXX)
 
- -- Bradford D. Boyle <bradford.d.boyle@gmail.com>  Thu, 22 Dec 2022 04:31:43 +0000
+ -- Bradford D. Boyle <bradford.d.boyle@gmail.com>  Tue, 31 Jan 2023 21:05:38 +0000
