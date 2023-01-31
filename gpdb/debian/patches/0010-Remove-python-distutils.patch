@@ -71,7 +71,7 @@
  
 --- a/configure
 +++ b/configure
-@@ -11089,34 +11089,27 @@
+@@ -11054,34 +11054,27 @@
    as_fn_error $? "Python version $python_version is too old (version 2.4 or later is required)" "$LINENO" 5
  fi
  
@@ -114,7 +114,7 @@
  if test "$PORTNAME" = win32 ; then
      python_includespec=`echo $python_includespec | sed 's,[\],/,g'`
  fi
-@@ -11128,8 +11121,8 @@
+@@ -11093,8 +11086,8 @@
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking how to link an embedded Python application" >&5
  $as_echo_n "checking how to link an embedded Python application... " >&6; }
  
@@ -125,7 +125,7 @@
  
  # If LDLIBRARY exists and has a shlib extension, use it verbatim.
  ldlibrary=`echo "${python_ldlibrary}" | sed -e 's/\.so$//' -e 's/\.dll$//' -e 's/\.dylib$//' -e 's/\.sl$//'`
-@@ -11141,11 +11134,11 @@
+@@ -11106,11 +11099,11 @@
  	# Otherwise, guess the base name of the shlib.
  	# LDVERSION was added in Python 3.2, before that use VERSION,
  	# or failing that, $python_version from _PGAC_CHECK_PYTHON_DIRS.
@@ -139,7 +139,7 @@
  		if test x"${python_version_var}" != x""; then
  			ldlibrary="python${python_version_var}"
  		else
-@@ -11205,7 +11198,7 @@
+@@ -11170,7 +11163,7 @@
  fi
  python_libspec="-L${python_libdir} -l${ldlibrary}"
  
