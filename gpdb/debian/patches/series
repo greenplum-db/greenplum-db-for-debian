@@ -5,8 +5,5 @@
 0007-Update-perl-scripts-to-use-correct-interpreter.patch
 0008-Ensure-that-distributed-files-are-plain-ASCII.patch
 0009-Add-explicit-default-copy-constructor-and-assignment.patch
-0010-Remove-python-distutils.patch
-0011-fix-gpfdist-gprintln.patch
 0013-fix-nbtdesc-datalen.patch
-0014-remove-unneeded-python-includes.patch
 0015-remove-generated-cython-source.patch
