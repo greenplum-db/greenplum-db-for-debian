@@ -8,3 +8,5 @@
 0010-Remove-python-distutils.patch
 0011-fix-gpfdist-gprintln.patch
 0013-fix-nbtdesc-datalen.patch
+0014-remove-unneeded-python-includes.patch
+0015-remove-generated-cython-source.patch

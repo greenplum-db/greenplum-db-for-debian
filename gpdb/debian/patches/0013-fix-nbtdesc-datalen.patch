@@ -1,3 +1,10 @@
+Description: Fix unintialized warning in nbtdesc
+ Provide initial values for variables to silence maybe-uninitialized
+ warnings/errors from GCC.
+Author: Bradford D. Boyle <bradford.d.boyle@gmail.com>
+Forwarded: no
+Last-Update: 2023-02-04
+
 --- a/src/backend/access/rmgrdesc/nbtdesc.c
 +++ b/src/backend/access/rmgrdesc/nbtdesc.c
 @@ -26,9 +26,9 @@

@@ -1,3 +1,11 @@
+Description: Fix gpfdist gprintln calls
+ The function gprintln function specifies that its arguments should be
+ type-checked against a format string. If the second argument to gprintln isn't
+ a format string, then GCC will emit a warning/error if -Wformat is used.
+Author: Bradford D. Boyle <bradford.d.boyle@gmail.com>
+Forwarded: no
+Last-Update: 2023-02-04
+
 --- a/src/bin/gpfdist/gpfdist.c
 +++ b/src/bin/gpfdist/gpfdist.c
 @@ -4617,7 +4617,7 @@

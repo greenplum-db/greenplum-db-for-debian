@@ -6,6 +6,7 @@ Standards-Version: 4.6.1.0
 Build-Depends:
  bison,
  debhelper-compat (= 13),
+ cython3,
  flex,
  libapr1-dev,
  libaprutil1-dev,

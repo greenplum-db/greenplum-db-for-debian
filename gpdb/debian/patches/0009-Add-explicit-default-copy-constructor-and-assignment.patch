@@ -1,8 +1,7 @@
 Description: Add explicit default copy constructor and assignment operator
 Author: Bradford D. Boyle <bradford.d.boyle@gmail.com>
 Last-Update: 2022-04-09
----
-This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+
 --- a/src/backend/gporca/libgpos/include/gpos/common/CDouble.h
 +++ b/src/backend/gporca/libgpos/include/gpos/common/CDouble.h
 @@ -103,6 +103,9 @@

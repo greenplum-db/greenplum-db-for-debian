@@ -1,3 +1,18 @@
+Description: Replace use of deprecated Python module distutils.sysconfig
+ With Python 3.10, configure spits out warnings about the module
+ distutils.sysconfig being deprecated and scheduled for removal in Python 3.12.
+ Change the uses in configure to use the module sysconfig instead.  The logic
+ stays largely the same, although we have to rely on INCLUDEPY instead of the
+ deprecated get_python_inc function.
+
+ Note that sysconfig exists since Python 2.7, so this moves the minimum
+ required version up from Python 2.6 (or 2.4, before v13). Also, sysconfig
+ didn't exist in Python 3.1, so the minimum 3.x version is now 3.2.
+Author: Tom Lane <tgl@sss.pgh.pa.us>
+Origin: upstream, https://github.com/postgres/postgres/commit/aa2215d6b8acee3604e16d5f5f2c3f40fc045bb4
+Forwarded: no
+Last-Update: 2023-02-04
+
 --- a/config/python.m4
 +++ b/config/python.m4
 @@ -41,28 +41,21 @@
