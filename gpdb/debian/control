@@ -1,4 +1,4 @@
-Source: gpdb
+Source: gpdb-6
 Maintainer: Bradford D. Boyle <bradford.d.boyle@gmail.com>
 Section: misc
 Priority: optional
