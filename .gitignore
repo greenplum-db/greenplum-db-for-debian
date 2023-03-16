@@ -6,17 +6,17 @@ gpdb-*.tar.gz
 gpdb_*.orig.tar.gz
 
 # ignore Debian package build artifacts
-gpdb_*.debian.tar.xz
-gpdb_*.dsc
-gpdb_*.build
-gpdb_*.buildinfo
-gpdb_*.changes
+gpdb*.debian.tar.xz
+gpdb*.dsc
+gpdb*.build
+gpdb*.buildinfo
+gpdb*.changes
 greenplum-db-?-dbgsym_*.deb
 greenplum-db-?-dbgsym_*.ddeb
 greenplum-db-?_*.deb
 
 # ignore upload files
-gpdb_*.upload
+gpdb*.upload
 
 # ignore unpacked source code
 gpdb/**

@@ -1,4 +1,4 @@
-gpdb (7.0.0~beta.1-1) UNRELEASED; urgency=medium
+gpdb-7 (7.0.0~beta.1-1) UNRELEASED; urgency=medium
 
   * Initial release. (Closes: #XXXXXX)
 

@@ -1,4 +1,4 @@
 version=4
-opts="searchmode=plain,filenamemangle=s%(?:.*?)?v?(\d[\d.]*(?:-beta\.\d)?)-src-full\.tar\.gz%@PACKAGE@-$1.tar.gz%, uversionmangle=s/-(beta\.\d)/~$1/" \
+opts="searchmode=plain,filenamemangle=s%(?:.*?)?v?(\d[\d.]*(?:-beta\.\d)?)-src-full\.tar\.gz%@PACKAGE@_$1.tar.gz%, uversionmangle=s/-(beta\.\d)/~$1/" \
     https://api.github.com/repos/greenplum-db/gpdb/releases \
     https://github.com/greenplum-db/gpdb/releases/download/\d[\.\d]*(?:-beta\.\d)?/@ANY_VERSION@-src-full.tar.gz debian
