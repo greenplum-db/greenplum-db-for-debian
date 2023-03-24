@@ -10,14 +10,11 @@ Last-Update: 2023-02-04
 
 --- a/gpMgmt/bin/Makefile
 +++ b/gpMgmt/bin/Makefile
-@@ -103,8 +103,9 @@
+@@ -103,6 +103,7 @@
  pyyaml:
  	@echo "--- pyyaml"
  	cd $(PYLIB_SRC_EXT)/ && $(TAR) xzf $(PYYAML_DIR).tar.gz
 +	rm -f $(PYLIB_SRC_EXT)/$(PYYAML_DIR)/ext/_yaml.c
  	cd $(PYLIB_SRC_EXT)/$(PYYAML_DIR)/ && env -u CC $(PYTHON) setup.py build
--	cp -r $(PYLIB_SRC_EXT)/$(PYYAML_DIR)/build/lib*-3.*/* $(PYLIB_DIR)
-+	cp -r $(PYLIB_SRC_EXT)/$(PYYAML_DIR)/build/lib*-3*/* $(PYLIB_DIR)
+ 	cp -r $(PYLIB_SRC_EXT)/$(PYYAML_DIR)/build/lib*-3*/* $(PYLIB_DIR)/
  
- #
- # PYLINT

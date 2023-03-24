@@ -42,7 +42,7 @@ Authored-by: Bradford D. Boyle <bradfordb@vmware.com>
  	cd $(PYLIB_SRC_EXT)/ && $(TAR) xzf $(PYYAML_DIR).tar.gz
 -	cd $(PYLIB_SRC_EXT)/$(PYYAML_DIR)/ && env -u CC python3 setup.py build
 +	cd $(PYLIB_SRC_EXT)/$(PYYAML_DIR)/ && env -u CC $(PYTHON) setup.py build
- 	cp -r $(PYLIB_SRC_EXT)/$(PYYAML_DIR)/build/lib*-3.*/* $(PYLIB_DIR)
+ 	cp -r $(PYLIB_SRC_EXT)/$(PYYAML_DIR)/build/lib*-3*/* $(PYLIB_DIR)/
  
  #
 @@ -120,7 +120,7 @@
