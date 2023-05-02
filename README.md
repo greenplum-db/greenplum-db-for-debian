@@ -33,4 +33,4 @@ issue trackers are expected to follow the [Code of Conduct][].
 
 [issues]: https://github.com/greenplum-db/greenplum-db-for-debian/issues
 [pull requests]: https://github.com/greenplum-db/greenplum-db-for-debian/pulls
-[Code of Conduct]: CODE-OF-CONDUCT.MD
+[Code of Conduct]: CODE-OF-CONDUCT.md
