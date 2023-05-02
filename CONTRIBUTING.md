@@ -10,8 +10,14 @@ process, please refer to our [FAQ](https://cla.vmware.com/faq).
 
 ## Structure of the Project
 
-* envrc.example - environment variables that you will want to have set when
-  working in the project
+* envrc.example - The `dch` command requires the following environment
+  variables when working in the project
+
+```sh
+export DEBFULLNAME="<your-name-here>"
+export DEBEMAIL="<your-email-here>"
+```
+
 * gpdb - the packaging tree; this directory should only contain one directory
   named debian
   * debian - Debian packaging directory
@@ -33,6 +39,32 @@ uscan
 dch --newversion <new-upstream-version> ""
 origtargz
 sbuild [--dist=<target-distribution>]
+```
+
+### Example 1: Build GP 6.24.2-1
+
+**NOTE:** The Debian Stable release is required for Greenplum 6. This
+is a result of Python 2 and related packages not being available in
+Debian Unstable (Sid),
+
+```sh
+cd ~/greenplum-db-for-debian/gpdb
+git checkout main
+uscan -vv
+dch --newversion 6.24.2-1 ""
+origtargz
+sbuild --dist=stable
+```
+
+### Example 2: Build GP 7.0.0 Beta 2
+
+```sh
+cd ~/greenplum-db-for-debian/gpdb
+git checkout 7
+uscan -vv
+dch --newversion 7.0.0~beta.2-2 ""
+origtargz
+sbuild --dist=unstable
 ```
 
 ## How to Add a New Debian Patch
@@ -96,11 +128,13 @@ These sections document one-time setup instructions.
 
 ### Setting Up `sbuild`
 
+These steps assume the current user performing the build has sudo access.
+
 This section is based on [Debian Wiki - sbuild](https://wiki.debian.org/sbuild)
 
 ```sh
 sudo apt install sbuild schroot debootstrap apt-cacher-ng devscripts piuparts
-sudo tee ~/.sbuildrc << EOF
+sudo tee ~/.sbuildrc << "EOF"
 ##############################################################################
 # PACKAGE BUILD RELATED (additionally produce _source.changes)
 ##############################################################################
@@ -132,14 +166,40 @@ $autopkgtest_opts = [ '--', 'schroot', '%r-%a-sbuild' ];
 ##############################################################################
 1;
 EOF
+
 sudo sbuild-adduser $LOGNAME
 sudo ln -sf ~/.sbuildrc /root/.sbuildrc
+```
 
+_logout_ and _re-login_ or use `newgrp sbuild` in your current shell
+
+```sh
 newgrp sbuild
+```
 
-# create chroot for Debian unstable (sid) suite
+#### Setup chroot isolated Debian Unstable and Stable build environments
+
+##### Create chroot for Debian Unstable building
+
+Debian Unstable (also known by its codename "Sid") is not strictly a
+release, but rather a rolling development version of the Debian
+distribution containing the latest packages that have been introduced
+into Debian.
+
+```sh
 sudo sbuild-createchroot --include=eatmydata,ccache unstable \
     /srv/chroot/unstable-amd64-sbuild \
+    http://127.0.0.1:3142/ftp.us.debian.org/debian
+```
+
+##### Create chroot for Debian Stable building
+
+The release of Debian called "stable" is always the official released
+version of Debian. Ordinary users should use this version.
+
+```sh
+sudo sbuild-createchroot --include=eatmydata,ccache unstable \
+    /srv/chroot/stable-amd64-sbuild \
     http://127.0.0.1:3142/ftp.us.debian.org/debian
 ```
 
@@ -147,9 +207,10 @@ sudo sbuild-createchroot --include=eatmydata,ccache unstable \
 
 This section is based on [Debian Wiki - Using Quilt][quilt]
 
-Create a `~/.quiltrc` file with the following content
+Create a `~/.quiltrc` file with the following:
 
 ```sh
+cat > ~/.quiltrc << "EOF"
 QUILT_PATCHES=debian/patches
 QUILT_NO_DIFF_INDEX=1
 QUILT_NO_DIFF_TIMESTAMPS=1
@@ -158,6 +219,7 @@ QUILT_REFRESH_ARGS="-p ab"
 QUILT_DIFF_ARGS="--color=auto"
 QUILT_PATCH_OPTS="--reject-format=unified"
 QUILT_COLORS="diff_hdr=1;32:diff_add=1;34:diff_rem=1;31:diff_hunk=1;33:diff_ctx=35:diff_cctx=33"
+EOF
 ```
 
 You can also set these as environment variables.
