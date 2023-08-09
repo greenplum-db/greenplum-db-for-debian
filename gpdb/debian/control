@@ -8,6 +8,7 @@ Build-Depends:
  debhelper-compat (= 13),
  cython3,
  flex,
+ g++-12,
  libapr1-dev,
  libaprutil1-dev,
  libbz2-dev,
@@ -27,6 +28,7 @@ Build-Depends:
  pkg-config,
  python3,
  python3-setuptools,
+ uuid-dev,
  zlib1g-dev
 Vcs-Browser: https://github.com/greenplum-db/greenplum-db-for-debian
 Vcs-Git: https://github.com/greenplum-db/greenplum-db-for-debian.git -b 7 [gpdb]
@@ -40,7 +42,10 @@ Depends:
  locales,
  net-tools,
  openssh-server,
- python3
+ python3,
+ python3-psutil,
+ python3-psycopg,
+ python3-yaml
 Description: Massively Parallel PostgreSQL for Analytic
  Greenplum Database (GPDB) is an advanced, fully featured, open source data
  warehouse, based on PostgreSQL. It provides powerful and rapid analytics on

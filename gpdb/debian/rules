@@ -9,6 +9,7 @@ DEB_TARGET_MULTIARCH ?= $(shell dpkg-architecture -qDEB_TARGET_MULTIARCH)
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 CONFIGURE_FLAGS = \
+  CXX=g++-12 \
   --prefix=/usr/local/greenplum-db-$(MAJOR_VER) \
   --disable-rpath \
   --disable-tap-tests \
@@ -20,13 +21,13 @@ CONFIGURE_FLAGS = \
   --with-libxml \
   --with-pgport=5432 \
   --with-libedit-preferred \
-  --with-pythonsrc-ext \
   --disable-debug-extensions \
   --with-perl \
   --with-python \
   --with-openssl \
   --with-pam \
   --with-ldap \
+  --with-uuid=e2fs \
   --enable-debug \
   --with-system-tzdata=/usr/share/zoneinfo
 
